@@ -1,0 +1,3 @@
+Release notes for 1.0.7_1 11 December 2005
+
+I have done a small tweak in the Book initialisation code so it creates all the nominal accounts automatically, so there is no need to create them manually every time you start a new book. This should get you up and going much quicker.

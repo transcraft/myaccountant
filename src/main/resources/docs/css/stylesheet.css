@@ -1,0 +1,33 @@
+body {
+	font-family: Verdana;
+	font-size: 8pt;
+	background-image: url(../images/bottomcorner.png);
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+td {
+	font-size: 8pt;
+}
+h1 {
+	color: #600000;
+	font-size: 18px;
+	font-weight: bold;
+}
+A {
+	color: #800000;
+	text-decoration: none;
+	font-weight: bold;
+	font-style: italic;
+	border: solid #ffffff 1px;
+}
+A:hover {
+	color: #ff0000;
+	border: solid #ff0000 1px;
+}
+.middle {
+	background-image: url(../images/topcorner.jpg);
+	background-repeat: no-repeat;
+}
+#google {
+    background-color: #ffffff;
+}

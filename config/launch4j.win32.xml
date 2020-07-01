@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar></jar>
+  <outfile>C:\Users\David Tran\src\MyAccountant\build\distributions\MyAccountant\MyAccountant.exe</outfile>
+  <errTitle>Oracle Java Runtime Environment 8.0</errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>https://www.oracle.com/java/technologies/javase-jre8-downloads.html</downloadUrl>
+  <supportUrl>https://www.transcraft.co.uk/</supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\David Tran\src\MyAccountant\build\distributions\MyAccountant\images\logo.ico</icon>
+  <var>CLASSPATH=%EXEDIR%\lib\MyAccountant.jar;%EXEDIR%\lib\db4o-8.0.276.16149.jar;%EXEDIR%\lib\jasperreports-6.12.2.jar;%EXEDIR%\lib\activation-1.1.1.jar;%EXEDIR%\lib\org.eclipse.jface-3.19.0.jar;%EXEDIR%\lib\org.eclipse.swt-3.114.100.jar;%EXEDIR%\lib\org.eclipse.swt.win32.win32.x86_64-3.114.0.jar;%EXEDIR%\lib\commons-collections4-4.4.jar;%EXEDIR%\lib\commons-lang3-3.10.jar;%EXEDIR%\lib\google-collections-1.0.jar;%EXEDIR%\lib\slf4j-log4j12-1.7.30.jar;%EXEDIR%\lib\slf4j-api-1.7.30.jar;%EXEDIR%\lib\itext-2.1.7.jar;%EXEDIR%\lib\commons-digester-2.1.jar;%EXEDIR%\lib\commons-beanutils-1.8.3.jar;%EXEDIR%\lib\commons-logging-1.2.jar;%EXEDIR%\lib\org.eclipse.core.commands-3.9.700.jar;%EXEDIR%\lib\org.eclipse.equinox.common-3.12.0.jar;%EXEDIR%\lib\log4j-1.2.17.jar;%EXEDIR%\lib\bcmail-jdk14-138.jar;%EXEDIR%\lib\bcprov-jdk14-138.jar;%EXEDIR%\lib\bctsp-jdk14-1.38.jar;%EXEDIR%\lib\bcmail-jdk14-1.38.jar;%EXEDIR%\lib\bcprov-jdk14-1.38.jar</var>
+  <classPath>
+    <mainClass>transcraft.myaccountant.ui.MainApp</mainClass>
+    <cp>%CLASSPATH%</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.8.0_01</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+    <opt>-Djava.library.path=win32</opt>
+  </jre>
+  <versionInfo>
+    <fileVersion>2.3.2.0</fileVersion>
+    <txtFileVersion>2.3.2.0</txtFileVersion>
+    <fileDescription>Transcraft Intuitive Book Keeping</fileDescription>
+    <copyright>Copyrights Transcraft Trading Limited</copyright>
+    <productVersion>2.3.2.0</productVersion>
+    <txtProductVersion>2.3.2.0</txtProductVersion>
+    <productName>Transcraft Intuitive Book Keeping</productName>
+    <companyName>Transcraft Trading Limited</companyName>
+    <internalName>TranscraftMyAccountant</internalName>
+    <originalFilename>MyAccountant.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_UK</language>
+  </versionInfo>
+</launch4jConfig>
