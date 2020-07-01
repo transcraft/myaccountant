@@ -29,7 +29,7 @@ To run the application after a successful build:
 
 For more information and user manual can be found in the [src/main/resources/docs](/src/main/resources/docs/index.html) folder.
 
-[Screenshot on Linux](/images/myaccountant-linux.jpg)
+![Screenshot on Linux](/images/myaccountant-linux.jpg)
 
-[Screenshot on Windows](/images/myaccountant-win.jpg)
+![Screenshot on Windows](/images/myaccountant-win.jpg)
 
