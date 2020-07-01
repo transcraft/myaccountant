@@ -15,6 +15,21 @@ This application is used actively for my own book keeping operations.
 
 Configurations have been added to prepare and generate a .deb package for Debian Linux using debreate, and a Windows setup file for Windows. Windows packaging uses [Launch4j](http://launch4j.sourceforge.net/) to generate the native executable wrapper and [NSIS](https://nsis.sourceforge.io/Download) to package up the self extracting archive file.
 
-For more information and user manual, please navigate down to the src/main/resources/docs/ folder and click on the index.html file.
+To build the application, run:
 
+```sh
+./gradlew prepareDeb
+```
+
+To run the application after a successful build:
+
+```sh
+./build/distributions/MyAccountant/bin/MyAccountant[.bat]
+```
+
+For more information and user manual can be found in the [src/main/resources/docs](/src/main/resources/docs/index.html) folder.
+
+[Screenshot on Linux](/images/myaccountant-linux.jpg)
+
+[Screenshot on Windows](/images/myaccountant-win.jpg)
 
