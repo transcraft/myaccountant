@@ -143,6 +143,8 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
         this.tableViewer.setLabelProvider(new AllocationRuleLabelProvider());
         this.tableViewer.setCellModifier(new AllocationRuleCellModifier());
         this.setRule((AllocationRule)this.model);
+        
+        this.tableViewer.refresh();
     }
 	
     /**

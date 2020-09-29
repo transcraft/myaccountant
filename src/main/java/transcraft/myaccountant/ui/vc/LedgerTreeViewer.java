@@ -329,7 +329,6 @@ public class LedgerTreeViewer extends ActionableTarget<RunningEntry>
             label.setText(Messages.getString("LedgerTreeViewer.12") + model); //$NON-NLS-1$
             tabItem.setControl(label);
         }
-        this.tabFolder.showItem(tabItem);
         this.tabFolder.setSelection(tabItem);
         tabItem.addDisposeListener(new DisposeListener() {
         	@Override
@@ -337,6 +336,9 @@ public class LedgerTreeViewer extends ActionableTarget<RunningEntry>
                 treeViewer.setSelection(null, false);
             }
         });
+        this.tabFolder.showItem(tabItem);
+        tabFolder.requestLayout();        
+        tabFolder.setFocus();
         return tabItem.getControl();
     }
     

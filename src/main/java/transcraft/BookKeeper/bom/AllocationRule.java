@@ -142,7 +142,7 @@ public class AllocationRule implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%s%s", this.getName(), this.allocation);
+        return this.getName();
     }
     
     /* (non-Javadoc)

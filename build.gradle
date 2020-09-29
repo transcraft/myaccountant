@@ -74,11 +74,11 @@ application {
 }
 
 task(unpackDist, type: Copy) {
-	dependsOn 'assembleDist'
+	dependsOn 'installDist'
 	group 'distribution'
 	description 'Unpack disted zip to prepare for deb packaging'
-	from zipTree("${buildDir}/${distsDirName}/${applicationName}.zip")
-	into file("${buildDir}/${distsDirName}")
+	from "${buildDir}/install/${applicationName}"
+	into file("${buildDir}/${distsDirName}/${applicationName}")
 }
 
 task(prepareDeb, type: Copy) {
