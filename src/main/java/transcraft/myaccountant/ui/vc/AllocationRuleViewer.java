@@ -203,7 +203,7 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
             this.title.setText(this.allocationRule instanceof Entry ? Messages.getString("AllocationRuleViewer.0") + ((Entry)this.allocationRule).getAmount() : //$NON-NLS-1$
                 Messages.getString("AllocationRuleViewer.1") + this.allocationRule.getName()); //$NON-NLS-1$
         }
-        this.tableViewer.setInput(this.allocationRule);
+        this.tableViewer.setInput(this.allocationRule.getAllocations(true));
         this.tableViewer.getTable().setFocus();
     }
     
@@ -301,15 +301,17 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
     }
     
     public class AllocationRuleContentProvider implements IStructuredContentProvider {
-        AllocationRule rule;
         
         /* (non-Javadoc)
          * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
          */
         @Override
         public Object[] getElements(Object inputElement) {
-            Object [] allocs = this.rule.getAllocations(true);
-            return allocs;
+        	if (inputElement instanceof Allocation[]) {
+                Object [] allocs = (Allocation[])inputElement;
+                return allocs;
+        	}
+        	return new Allocation[0];
         }
 
         /* (non-Javadoc)
@@ -324,7 +326,6 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
          */
         @Override
         public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-            this.rule = (AllocationRule)newInput;
         }
     }
     
@@ -431,7 +432,7 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
             }
             Object value = metaProvider.getValue(alloc, property, null);
             MetaColumn<?> column = metaProvider.getColumn(property);
-            if (column != null && column.getList() != null) {
+            if (column != null && column.getList().isPresent()) {
                 return Integer.valueOf(column.getListSelectionIndex(value));
             }
             return value;
@@ -469,7 +470,7 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
             
             Object newValue = value;
             MetaColumn<?> column = metaProvider.getColumn(property);
-            if (column != null && column.getList() != null) {
+            if (column != null && column.getList().isPresent()) {
                 if (value.toString().equals("-1")) { //$NON-NLS-1$
                     /*
                      * this looks like a bug in ComboBoxCellEditor, which seems to not
@@ -490,7 +491,9 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
                         }
                     }
                 } else {
-                    Object str = column.getList().map(l -> l.get(Integer.parseInt(value.toString()))).orElse(null);
+                    Object str = column.getList()
+                    		.map(l -> l.get(Integer.parseInt(value.toString())))
+                    		.orElse(null);
                     LOG.debug("{}:{}=>{}",  property, value, str); //$NON-NLS-1$
                     newValue = str;
                 }
@@ -504,8 +507,14 @@ public class AllocationRuleViewer extends TableMetaViewer<AllocationRule, Alloca
                     // auto save this value to the DB. In embedded mode leave it to the parent to save
                     bomService.storeGeneric(allocationRule, AllocationRuleMeta.NAME_PROP, allocationRule.getName());
                 }
-                AllocationRuleViewer.this.tableViewer.refresh();
-                LOG.debug("{}=>{}=>{}", property, newValue, allocationRule); //$NON-NLS-1$
+                
+                /*
+                 * call setInput(), passing the allocations with a dummy row (if one does not exist)
+                 */
+                Allocation[] allocs = allocationRule.getAllocations(true);
+                LOG.debug("modify({},{})=>{}", property, newValue, Arrays.asList(allocs)); //$NON-NLS-1$
+                AllocationRuleViewer.this.tableViewer.setInput(allocs);
+                AllocationRuleViewer.this.tableViewer.getTable().setFocus();
             } catch (Exception e) {
             	LOG.error(String.format("modify(%s,%s,%s)", element, property, value), e); //$NON-NLS-1$
                 GUIUtil.showError(Messages.getString("AllocationRuleViewer.12"), 

@@ -12,6 +12,7 @@
     </listAttribute>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
+    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.buildship.core.classpathprovider"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="transcraft.myaccountant.ui.MainApp"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="MyAccountant"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="MyAccountant"/>

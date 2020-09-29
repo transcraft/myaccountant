@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-AddEntry<MyAccountant>",
+            "request": "launch",
+            "mainClass": "transcraft.myaccountant.test.AddEntry",
+            "projectName": "MyAccountant"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-DeleteEntry<MyAccountant>",
+            "request": "launch",
+            "mainClass": "transcraft.myaccountant.test.DeleteEntry",
+            "projectName": "MyAccountant"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestEntry<MyAccountant>",
+            "request": "launch",
+            "mainClass": "transcraft.myaccountant.test.TestEntry",
+            "projectName": "MyAccountant"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestReportDateUtil<MyAccountant>",
+            "request": "launch",
+            "mainClass": "transcraft.myaccountant.test.TestReportDateUtil",
+            "projectName": "MyAccountant"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-UpdateEntry<MyAccountant>",
+            "request": "launch",
+            "mainClass": "transcraft.myaccountant.test.UpdateEntry",
+            "projectName": "MyAccountant"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-MainApp<MyAccountant>",
+            "request": "launch",
+            "mainClass": "transcraft.myaccountant.ui.MainApp",
+            "projectName": "MyAccountant"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-DateUtil<MyAccountant>",
+            "request": "launch",
+            "mainClass": "transcraft.myaccountant.utils.DateUtil",
+            "projectName": "MyAccountant"
+        }
+    ]
+}

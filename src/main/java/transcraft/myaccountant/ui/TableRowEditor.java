@@ -252,6 +252,10 @@ public abstract class TableRowEditor<T extends AllocationRule> extends Composite
         }
     }
     
+    /**
+     * invoked when user moves the row editor to a new row i.e. when the underlying
+     * row data is changed
+     */
     public abstract void	refreshEditorValues();
     
     protected abstract void	saveRowData();

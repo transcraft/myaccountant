@@ -619,7 +619,7 @@ public class BOMService {
             int v = (ledgerName.equals(BOMService.TD_LEDGER)) ?
                 re1.getPostingDate().compareTo(re2.getPostingDate()) :
                 re1.getValueDate().compareTo(re2.getValueDate());
-            return v == 0 ? (re1.getAmount() > re2.getAmount() ? -1 : 1) : v;
+            return v == 0 ? (re1.getEntryId() - re2.getEntryId()) : v;
         }).collect(Collectors.toList());
         
         this.calculateRunningBalances(ledgerName, entryList, account);

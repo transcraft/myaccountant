@@ -97,6 +97,7 @@ public class LedgerEntryEditor extends TableRowEditor<Entry> {
             if (editor != null) {
                 Object value = metaProvider.getValue(getModel(), metaColumns[i].getName(), account.getReference());
                 editor.setText(value != null ? value.toString() : ""); //$NON-NLS-1$
+                editor.refreshInternalValues();
             }
         }
     }

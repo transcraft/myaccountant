@@ -12,3 +12,4 @@ bin/
 src/main/resources/templates/
 
 *.swp
+*.log

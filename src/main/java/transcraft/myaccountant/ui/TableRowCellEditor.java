@@ -159,6 +159,12 @@ public abstract class TableRowCellEditor<T extends AllocationRule> extends  Comp
         this.setLayout(ly);
     }
     
+    /**
+     * invoked when user moves the row editor to a new row i.e. when the underlying
+     * row data is changed
+     */
+    public abstract void	refreshInternalValues();
+    
     protected void popupAllocator() {
         AllocationRulePopup rulePopup = new AllocationRulePopup(this, 
         		this.rowEditor.bomService, 

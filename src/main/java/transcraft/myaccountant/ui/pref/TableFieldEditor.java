@@ -347,7 +347,7 @@ public class TableFieldEditor<T> extends FieldEditor {
             }
             Object value = metaProvider.getValue(model, property, null);
             MetaColumn<?> column = metaProvider.getColumn(property);
-            if (column != null && column.getList() != null) {
+            if (column != null && column.getList().isPresent()) {
                 return Integer.valueOf(column.getListSelectionIndex(value));
             }
             return value;
@@ -372,7 +372,7 @@ public class TableFieldEditor<T> extends FieldEditor {
             
             Object newValue = value;
             MetaColumn<?> column = metaProvider.getColumn(property);
-            if (column != null && column.getList() != null) {
+            if (column != null && column.getList().isPresent()) {
                 newValue = column.getList().map(l -> l.get(Integer.parseInt(value.toString()))).orElse(null);
             }
             try {

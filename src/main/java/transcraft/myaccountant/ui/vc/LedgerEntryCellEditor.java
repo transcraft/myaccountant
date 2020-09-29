@@ -67,7 +67,25 @@ public class LedgerEntryCellEditor extends  TableRowCellEditor<Entry> implements
         bomService.addListener(this);
     }
     
-    /* (non-Javadoc)
+    @Override
+	public void refreshInternalValues() {
+        if (this.metaColumn.getList().isPresent()) {
+			LOG.debug("{}.refreshInternalValues()", this);
+	        List<String> list = this.bomService.getMemorisedList(this.metaColumn.getName());
+	        if (this.metaColumn.getName().equals(LedgerEntryMeta.REF_PROP)) {
+	        	list = list
+	        			.stream()
+	                    // these must be unique references, so they are unlikely to
+	                    // be re-used
+	        			.filter(ref -> ref.length() > 0 && !Character.isDigit(ref.charAt(ref.length() - 1)))
+	        			.collect(Collectors.toList());
+	        }
+	        this.metaColumn.setList(list);
+	        this.refreshPopupContents(list);
+        }
+	}
+
+	/* (non-Javadoc)
      * @see transcraft.myaccountant.service.BOMListener#dataChanged(transcraft.BookKeeper.service.BOMEvent)
      */
     @Override
@@ -75,19 +93,8 @@ public class LedgerEntryCellEditor extends  TableRowCellEditor<Entry> implements
         if (evt != null && (evt.entity instanceof Entry)) {
             return;
         }
-        if (this.metaColumn.getList().isPresent() &&
-                (evt == null || this.metaColumn.getPrototype().equals(evt.entity.getClass()))) {
-            List<String> list = this.bomService.getMemorisedList(this.metaColumn.getName());
-            if (this.metaColumn.getName().equals(LedgerEntryMeta.REF_PROP)) {
-            	list = list
-            			.stream()
-                        // these must be unique references, so they are unlikely to
-                        // be re-used
-            			.filter(ref -> ref.length() > 0 && !Character.isDigit(ref.charAt(ref.length() - 1)))
-            			.collect(Collectors.toList());
-            }
-            this.metaColumn.setList(list);
-            this.refreshPopupContents(list);
+        if (evt == null || this.metaColumn.getPrototype().equals(evt.entity.getClass())) {
+        	refreshInternalValues();
         }
     }
 
@@ -110,7 +117,7 @@ public class LedgerEntryCellEditor extends  TableRowCellEditor<Entry> implements
     @Override
 	protected void	goToNextField(int mask) {
         if (this.metaColumn.getName().equals(LedgerEntryMeta.DESC_PROP) && 
-        		this.rowEditor.getModel().getAmount() == 0) {
+        		this.rowEditor.isModified()) {
         	RunningEntry entry = (RunningEntry)this.rowEditor.getModel();
             /*
              * auto fill of entry

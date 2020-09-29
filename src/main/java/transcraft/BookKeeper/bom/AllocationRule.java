@@ -104,13 +104,15 @@ public class AllocationRule implements Serializable {
     	if (rule == null || rule == this) {
     		return;
     	}
-    	if (CollectionUtils.isEmpty(rule.allocation)) {
-    		return;
-    	}
+    	
     	if (this.allocation == null) {
     		this.allocation = Lists.newArrayList();
     	} else {
     		this.allocation.clear();
+    	}
+
+    	if (CollectionUtils.isEmpty(rule.allocation)) {
+    		return;
     	}
 
     	this.allocation.addAll(rule.allocation
@@ -140,7 +142,7 @@ public class AllocationRule implements Serializable {
      */
     @Override
     public String toString() {
-        return this.getName();
+        return String.format("%s%s", this.getName(), this.allocation);
     }
     
     /* (non-Javadoc)
@@ -185,18 +187,16 @@ public class AllocationRule implements Serializable {
             if (description != null) {
                 alloc.setDescription(description);
             }
-            LOG.debug("Before addAllocation({})=>{}", alloc, this); //$NON-NLS-1$
+            LOG.debug("Before addAllocation({}) we have {}", alloc, this); //$NON-NLS-1$
             int idx = this.allocation.indexOf(alloc);
             if (idx < 0) {
             	LOG.debug("addAllocation({}) added", alloc); //$NON-NLS-1$
                 this.allocation.add(alloc);
-            } else if (percentage != 0.0) {
+            } else {
             	LOG.debug("addAllocation({}) at {}", alloc, idx); //$NON-NLS-1$
                 this.allocation.set(idx, alloc);
-            } else {
-            	LOG.debug("addAllocation({},{}): percentage is 0, ignored", account, percentage); //$NON-NLS-1$
             }
-            LOG.debug("After addAllocation({})=>{}", alloc, this); //$NON-NLS-1$
+            LOG.debug("After addAllocation({}) we have {}", alloc, this); //$NON-NLS-1$
         } else {
         	LOG.info("Percentage {} exceeds allocation total", percentage); //$NON-NLS-1$
             //throw new RuntimeException("Percentage " + percentage + " exceeds allocation total");
@@ -241,13 +241,12 @@ public class AllocationRule implements Serializable {
         	 */
     		list = list
     				.stream()
-    				.filter(alloc -> alloc.account != null && alloc.getPercentage() != 0)
+    				.filter(alloc -> alloc.account != null)
     				.collect(Collectors.toList());
     	}
         if (withDummyEntry) {
         	list.add(new Allocation("", 0)); //$NON-NLS-1$
         }
-        LOG.debug("allocations:{}", list);
         // Java 8 compatibility mode, so Allocation[]::new is not available
         return list.toArray(new Allocation[list.size()]);
     }

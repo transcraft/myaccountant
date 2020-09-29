@@ -140,9 +140,12 @@ public abstract class TableMetaViewer<T,M> extends ActionableTarget<T> {
             tc.setData(metaColumns[i].getName());
             CellEditor editor = null;
             if (metaColumns[i].isEnabled()) {
-                if (metaColumns[i].getList() != null) {
+                if (metaColumns[i].getList().isPresent()) {
                     // Java 8 compatibility mode, so String[]::new is not available
-                    String [] items = metaColumns[i].getList().map(l -> l.toArray(new String[l.size()])).orElse(new String[0]);
+                    String [] items = metaColumns[i]
+                    		.getList()
+                    		.map(l -> l.toArray(new String[l.size()]))
+                    		.orElse(new String[0]);
                     editor = new ComboBoxCellEditor(table, items, metaColumns[i].getStyle());
                     final CCombo combo = (CCombo)editor.getControl();
                     combo.addKeyListener(new KeyAdapter() {
